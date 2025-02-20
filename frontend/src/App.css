@@ -1,0 +1,290 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+.rating-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 3rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 25, 55, 0.1);
+  border-radius: 20px;
+}
+
+h1 {
+  color: #001937;
+  margin-bottom: 3rem;
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.question-container {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  border-radius: 16px;
+  background-color: #f8f9fa;
+}
+
+.rating-text {
+  color: #001937;
+  margin-bottom: 2rem;
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  text-align: left;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.faces-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 120px;
+  margin: 0;
+}
+
+.emoji {
+  font-size: 2.5rem;
+  color: #FFC800;
+  margin-bottom: 0.5rem;
+}
+
+.emoji-text {
+  font-size: 0.9rem;
+  color: #001937;
+  text-align: center;
+}
+
+.face:hover {
+  transform: translateY(-5px);
+  border-color: #FFC800;
+  box-shadow: 0 4px 12px rgba(255, 200, 0, 0.15);
+}
+
+.face.active {
+  border-color: #FFC800;
+  background-color: #fff;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(255, 200, 0, 0.2);
+}
+
+.submit-button {
+  background-color: #001937;
+  color: white;
+  padding: 1.2rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto;
+  display: block;
+  opacity: 0.7;
+}
+
+.submit-button:not(:disabled) {
+  opacity: 1;
+}
+
+.submit-button:not(:disabled):hover {
+  background-color: #FFC800;
+  color: #001937;
+  transform: translateY(-2px);
+}
+
+.thank-you {
+  text-align: center;
+  padding: 3rem;
+}
+
+.thank-you-emoji {
+  font-size: 6rem;
+  margin-bottom: 2rem;
+  animation: bounce 1s ease;
+}
+
+.thank-you h2 {
+  color: #001937;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.thank-you p {
+  color: #34495e;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    padding: 1rem;
+  }
+
+  .rating-container {
+    padding: 1rem;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .question-container {
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .rating-text {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .faces-container {
+    gap: 1rem;
+  }
+
+  .face {
+    width: auto;
+    min-width: 80px;
+    max-width: 100px;
+    padding: 0.8rem;
+  }
+
+  .emoji {
+    font-size: 2rem;
+  }
+
+  .emoji-text {
+    font-size: 0.8rem;
+  }
+
+  .submit-button {
+    padding: 1rem;
+    font-size: 1rem;
+    margin: 1.5rem auto;
+    max-width: 100%;
+  }
+
+  .thank-you {
+    padding: 1.5rem;
+  }
+
+  .thank-you-emoji {
+    font-size: 4rem;
+  }
+
+  .thank-you h2 {
+    font-size: 1.5rem;
+  }
+
+  .thank-you p {
+    font-size: 1rem;
+  }
+}
+
+.club-logo {
+  width: 180px;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.intro-text {
+  color: #34495e;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+@media (max-width: 480px) {
+  .club-logo {
+    width: 120px;
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-text {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+}
