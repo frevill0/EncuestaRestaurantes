@@ -22,6 +22,10 @@ connectDB(MONGODB_URI)
 // Rutas API
 app.use('/EncuestaQtgc', calificacionRoutes)
 
+app.use('/', (req, res) => {
+  res.send('API Encuesta QTGC')
+})
+
 // Middleware de error
 app.use((err, req, res, next) => {
   console.error(err.stack)
