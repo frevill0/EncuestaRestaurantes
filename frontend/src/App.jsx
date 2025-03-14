@@ -3,26 +3,32 @@ import './App.css'
 
 function App() {
   const [ratings, setRatings] = useState({
-    organizacion: '',
-    instalaciones: '',
-    gastronomia: ''
+    servicio_terra: '',
+    satisfaccion_platos: ''
   })
   const [submitted, setSubmitted] = useState(false)
   const API_URL = import.meta.env.VITE_API_URL
 
   const emojis = [
     { face: '😊', text: 'Excelente' },
-    { face: '🙂', text: 'Buena' },
+    { face: '🙂', text: 'Bueno' },
     { face: '😐', text: 'Aceptable' },
     { face: '😕', text: 'Deficiente' },
     { face: '😠', text: 'Muy deficiente' }
   ]
 
-  const handleRating = (category, value) => {
-    const calificaciones = ['Excelente', 'Buena', 'Aceptable', 'Deficiente', 'Muy deficiente']
+  const satisfactionLevels = [
+    { face: '😊', text: 'Muy satisfecho(a)' },
+    { face: '🙂', text: 'Satisfecho(a)' },
+    { face: '😐', text: 'Neutral' },
+    { face: '😕', text: 'Insatisfecho(a)' },
+    { face: '😠', text: 'Muy insatisfecho(a)' }
+  ]
+
+  const handleRating = (category, value, options) => {
     setRatings(prev => ({
       ...prev,
-      [category]: calificaciones[value - 1]
+      [category]: options[value - 1].text
     }))
   }
 
@@ -44,7 +50,10 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(ratings)
+        body: JSON.stringify({
+          ...ratings,
+          origen: 'terra'
+        })
       })
       
       const data = await response.json()
@@ -52,9 +61,8 @@ function App() {
       if (response.ok) {
         setSubmitted(true)
         setRatings({
-          organizacion: '',
-          instalaciones: '',
-          gastronomia: ''
+          servicio_terra: '',
+          satisfaccion_platos: ''
         })
       } else {
         alert(data.error || 'Error al enviar la evaluación')
@@ -67,23 +75,21 @@ function App() {
 
   const questions = [
     {
-      id: 'organizacion',
-      text: '¿Cómo calificarías la organización general de los juegos internos?'
+      id: 'servicio_terra',
+      text: '¿Cómo calificarías el servicio recibido en los restaurantes del Quito Tenis y Golf Club?',
+      options: emojis
     },
     {
-      id: 'instalaciones',
-      text: '¿Cómo calificarías el estado de las instalaciones (estado de las canchas, señalización, accesibilidad)?'
-    },
-    {
-      id: 'gastronomia',
-      text: '¿Cómo calificarías la calidad y variedad de la oferta gastronómica durante los juegos?'
+      id: 'satisfaccion_platos',
+      text: '¿Qué tan satisfecho(a) estás con la calidad de platos ofrecidos en los restaurantes del club?',
+      options: satisfactionLevels
     }
   ]
 
   return (
     <div className="page-container">
       <div className="rating-container">
-        <h1>Evaluación de Servicios QTGC</h1>
+        <h1>Evaluación de Servicios - Restaurante Terra</h1>
         
         {!submitted ? (
           <form onSubmit={handleSubmit}>
@@ -91,15 +97,15 @@ function App() {
               <div key={question.id} className="question-container">
                 <p className="rating-text">{question.text}</p>
                 <div className="faces-container">
-                  {emojis.map((emoji, index) => (
+                  {question.options.map((option, index) => (
                     <button
                       key={index}
                       type="button"
-                      className={`face ${ratings[question.id] === emoji.text ? 'active' : ''}`}
-                      onClick={() => handleRating(question.id, index + 1)}
+                      className={`face ${ratings[question.id] === option.text ? 'active' : ''}`}
+                      onClick={() => handleRating(question.id, index + 1, question.options)}
                     >
-                      <span className="emoji">{emoji.face}</span>
-                      <span className="emoji-text">{emoji.text}</span>
+                      <span className="emoji">{option.face}</span>
+                      <span className="emoji-text">{option.text}</span>
                     </button>
                   ))}
                 </div>

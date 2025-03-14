@@ -1,24 +1,24 @@
 import mongoose from 'mongoose'
 
 const calificacionSchema = new mongoose.Schema({
-  organizacion: { 
+  servicio_terra: { 
     type: String, 
     required: true,
-    enum: ['Excelente', 'Buena', 'Aceptable', 'Deficiente', 'Muy deficiente']
+    enum: ['Excelente', 'Bueno', 'Aceptable', 'Deficiente', 'Muy deficiente']
   },
-  instalaciones: { 
+  satisfaccion_platos: { 
     type: String, 
     required: true,
-    enum: ['Excelente', 'Buena', 'Aceptable', 'Deficiente', 'Muy deficiente']
-  },
-  gastronomia: { 
-    type: String, 
-    required: true,
-    enum: ['Excelente', 'Buena', 'Aceptable', 'Deficiente', 'Muy deficiente']
+    enum: ['Muy satisfecho(a)', 'Satisfecho(a)', 'Neutral', 'Insatisfecho(a)', 'Muy insatisfecho(a)']
   },
   createdAt: { 
     type: Date, 
     default: Date.now 
+  },
+  origen: {
+    type: String,
+    default: 'terra',
+    required: true
   }
 })
 

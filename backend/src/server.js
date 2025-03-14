@@ -14,7 +14,7 @@ app.use(express.json())
 
 // Variables de entorno
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://frevill02:Qtgc.2025@encuestaqtgc.3ddbz.mongodb.net/'
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 2000
 
 // Conexión a la base de datos
 connectDB(MONGODB_URI)
