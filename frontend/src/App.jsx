@@ -2,12 +2,15 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
+  const API_URL = import.meta.env.VITE_API_URL
+  const ORIGEN = import.meta.env.VITE_ORIGEN || 'terra'
+
   const [ratings, setRatings] = useState({
     servicio_terra: '',
-    satisfaccion_platos: ''
+    satisfaccion_platos: '',
+    origen: ORIGEN
   })
   const [submitted, setSubmitted] = useState(false)
-  const API_URL = import.meta.env.VITE_API_URL
 
   const emojis = [
     { face: '😊', text: 'Excelente' },
@@ -45,15 +48,12 @@ function App() {
     }
 
     try {
-      const response = await fetch(`${API_URL}/calificaciones`, {
+      const response = await fetch(`${API_URL}/EncuestaQtgc/calificaciones`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...ratings,
-          origen: 'terra'
-        })
+        body: JSON.stringify(ratings)
       })
       
       const data = await response.json()
@@ -62,7 +62,8 @@ function App() {
         setSubmitted(true)
         setRatings({
           servicio_terra: '',
-          satisfaccion_platos: ''
+          satisfaccion_platos: '',
+          origen: ORIGEN
         })
       } else {
         alert(data.error || 'Error al enviar la evaluación')

@@ -11,6 +11,7 @@ const app = express()
 // Middleware
 app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 // Variables de entorno
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://frevill02:Qtgc.2025@encuestaqtgc.3ddbz.mongodb.net/'
@@ -22,8 +23,8 @@ connectDB(MONGODB_URI)
 // Rutas API
 app.use('/EncuestaQtgc', calificacionRoutes)
 
-app.use('/', (req, res) => {
-  res.send('API Encuesta QTGC')
+app.get('/', (req, res) => {
+  res.json({ message: 'API Encuesta QTGC' })
 })
 
 // Middleware de error
